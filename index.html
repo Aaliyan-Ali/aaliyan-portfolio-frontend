@@ -1,0 +1,225 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Aaliyan Ali | Full-Stack Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .popup-3d {
+            animation: fadeOut 2s ease-in-out forwards;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1) rotateX(0deg); visibility: visible; }
+            80% { opacity: 1; transform: scale(1.1) rotateX(10deg); }
+            100% { opacity: 0; transform: scale(0.9) rotateX(20deg); visibility: hidden; }
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.25);
+        }
+        .slider-left {
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.85), rgba(139, 92, 246, 0.75));
+        }
+        @media (max-width: 768px) {
+            .slider-container { flex-direction: column; }
+            .slider-left, .slider-right { width: 100% !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- 3D Popup -->
+<div id="welcomePopup" class="fixed inset-0 flex items-center justify-center z-50 bg-purple-900 bg-opacity-95 backdrop-blur-md popup-3d" style="animation: fadeOut 2s ease-in-out forwards;">
+    <div class="bg-gradient-to-r from-purple-600 to-purple-800 p-8 rounded-2xl shadow-2xl transform rotate-0 transition-all duration-500 border border-purple-300">
+        <h1 class="text-5xl md:text-7xl font-bold text-white text-center drop-shadow-lg">Welcome to Aaliyan Portfolio</h1>
+        <div class="flex justify-center mt-6">
+            <div class="w-16 h-1 bg-purple-300 rounded-full"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white shadow-md sticky top-0 z-40">
+    <nav class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+        <div class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">Aaliyan Ali</div>
+        <div class="space-x-4">
+            <a href="#home" class="text-gray-700 hover:text-purple-600 transition">Home</a>
+            <a href="#cv" class="text-gray-700 hover:text-purple-600 transition">CV</a>
+            <a href="#projects" class="text-gray-700 hover:text-purple-600 transition">Projects</a>
+            <a href="admin.html" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Admin Login</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Slider Section (Hero) -->
+    <section id="home" class="slider-container flex flex-wrap w-full min-h-[500px] bg-gray-900">
+        <div class="slider-left w-full md:w-[30%] relative flex items-center justify-center p-8" style="background-image: url('https://images.unsplash.com/photo-1519337265831-281ec6cc8514?w=800'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+            <div class="relative z-10 text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 animate-pulse">Creative Developer</h2>
+                <p class="text-xl">Building digital experiences that matter</p>
+                <div class="mt-6 flex justify-center gap-4">
+                    <span class="px-4 py-2 bg-purple-600 rounded-full text-sm">React</span>
+                    <span class="px-4 py-2 bg-purple-600 rounded-full text-sm">Node.js</span>
+                    <span class="px-4 py-2 bg-purple-600 rounded-full text-sm">MongoDB</span>
+                </div>
+            </div>
+        </div>
+        <div class="slider-right w-full md:w-[70%] bg-black">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover" style="max-height: 500px;">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-stats-and-graphs-2560-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv" class="container mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-800">Professional CV</h2>
+            <div class="w-24 h-1 bg-purple-600 mx-auto mt-4"></div>
+        </div>
+        <div id="cvContainer" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Dynamic CV content loaded here -->
+            <div class="animate-pulse p-8 text-center">Loading CV data...</div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800">Featured Projects</h2>
+                <div class="w-24 h-1 bg-purple-600 mx-auto mt-4"></div>
+                <p class="text-gray-600 mt-4">Explore my latest work and innovations</p>
+            </div>
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic project cards -->
+                <div class="animate-pulse p-8 text-center">Loading projects...</div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2026 Aaliyan Ali. Built with 💜 using Tailwind CSS & Node.js</p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="#" class="hover:text-purple-400">GitHub</a>
+            <a href="#" class="hover:text-purple-400">LinkedIn</a>
+            <a href="#" class="hover:text-purple-400">Twitter</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const API_BASE = 'https://your-backend-url.onrender.com/api'; // Change to your Railway backend URL
+
+    // Fetch and display CV
+    async function loadCV() {
+        try {
+            const res = await fetch(`${API_BASE}/cv`);
+            const cv = await res.json();
+            document.getElementById('cvContainer').innerHTML = `
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/3 bg-gradient-to-br from-purple-50 to-purple-100 p-8 text-center">
+                        <img src="${cv.imageUrl || 'https://randomuser.me/api/portraits/men/32.jpg'}" alt="${cv.name}" class="w-48 h-48 rounded-full mx-auto object-cover border-4 border-purple-500 shadow-lg">
+                        <h3 class="text-2xl font-bold mt-4">${cv.name}</h3>
+                        <p class="text-gray-600 mt-2">${cv.email}</p>
+                        <p class="text-gray-600">${cv.phone}</p>
+                        <p class="text-gray-600 text-sm mt-2">${cv.address}</p>
+                    </div>
+                    <div class="lg:w-2/3 p-8">
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-purple-700 mb-2">About Me</h4>
+                            <p class="text-gray-700">${cv.profile}</p>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-purple-700 mb-2">Skills</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${cv.skills.map(skill => `<span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">${skill}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-purple-700 mb-2">Experience</h4>
+                            ${cv.experiences.map(exp => `
+                                <div class="mb-4 border-l-4 border-purple-500 pl-4">
+                                    <h5 class="font-bold">${exp.title} at ${exp.company}</h5>
+                                    <p class="text-sm text-gray-500">${exp.dates}</p>
+                                    <p class="text-gray-700 mt-1">${exp.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-purple-700 mb-2">Education</h4>
+                            ${cv.educations.map(edu => `
+                                <div class="mb-3">
+                                    <h5 class="font-bold">${edu.degree}</h5>
+                                    <p class="text-gray-700">${edu.institution}</p>
+                                    <p class="text-sm text-gray-500">${edu.dates}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        } catch (error) {
+            console.error('Error loading CV:', error);
+            document.getElementById('cvContainer').innerHTML = '<div class="p-8 text-red-500 text-center">Failed to load CV. Please check backend connection.</div>';
+        }
+    }
+
+    // Fetch and display projects
+    async function loadProjects() {
+        try {
+            const res = await fetch(`${API_BASE}/projects`);
+            const projects = await res.json();
+            const grid = document.getElementById('projectsGrid');
+            if (projects.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-500">No projects yet.</div>';
+                return;
+            }
+            grid.innerHTML = projects.map(project => `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <img src="${project.cardImage}" alt="${project.title}" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800">${project.title}</h3>
+                        <p class="text-gray-600 mt-2 line-clamp-3">${project.shortDescription}</p>
+                        <button onclick="viewProject('${project._id}')" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition w-full">Explore More →</button>
+                    </div>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error('Error loading projects:', error);
+            document.getElementById('projectsGrid').innerHTML = '<div class="col-span-full text-red-500 text-center">Failed to load projects.</div>';
+        }
+    }
+
+    // Navigate to project detail page
+    window.viewProject = (id) => {
+        window.location.href = `project-detail.html?id=${id}`;
+    };
+
+    // Hide popup after animation (already handled by CSS)
+    setTimeout(() => {
+        const popup = document.getElementById('welcomePopup');
+        if(popup) popup.style.display = 'none';
+    }, 2000);
+
+    // Initialize
+    loadCV();
+    loadProjects();
+</script>
+</body>
+</html>
